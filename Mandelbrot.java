@@ -1,10 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
-
 //import java.util.*;
 import java.awt.event.*;
-class triplet<A>
-{
+
+class triplet<A> {
     private final A a;
     private final A b;
     private final A c;
@@ -96,7 +95,7 @@ class Myframe extends JFrame {
 class DrawPane extends JPanel implements KeyListener {
     public int imght, imgwid;
     int xprev = 0, yprev = 0;
-    double minR, maxR, minI, maxI,del;
+    double minR, maxR, minI, maxI, del;
     boolean setzoom;
 
     DrawPane() {
@@ -109,69 +108,61 @@ class DrawPane extends JPanel implements KeyListener {
         minI = -2.0;
         maxR = 2.0;
         maxI = 2.0;
-        del=((double)minR-(double)maxR)/(double)5;
-        setzoom=true;
+        del = ((double) minR - (double) maxR) / (double) 5;
+        setzoom = true;
     }
-    public boolean isFocusTraversable()
-    {
+
+    public boolean isFocusTraversable() {
         return true;
     }
-    
+
     //KeyListeners [start]
-    public void keyPressed(KeyEvent e)
-    {
-        if(e.getKeyCode()==KeyEvent.VK_I)
-        {
-            minR+=del;
-            maxR-=del;
-            minI+=del;
-            maxI-=del;
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_I) {
+            minR += del;
+            maxR -= del;
+            minI += del;
+            maxI -= del;
         }
-        if(e.getKeyCode()==KeyEvent.VK_O)
-        {
-            minR-=del;
-            maxR+=del;
-            minI-=del;
-            maxI+=del;
+        if (e.getKeyCode() == KeyEvent.VK_O) {
+            minR -= del;
+            maxR += del;
+            minI -= del;
+            maxI += del;
         }
-        del=(double)(maxR-minR)/(double)100;
-        
-        if(e.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-            minR=-2;
-            minI=-2;
-            maxR=2;
-            maxI=2;
+        del = (double) (maxR - minR) / (double) 100;
+
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            minR = -2;
+            minI = -2;
+            maxR = 2;
+            maxI = 2;
         }
-        if(e.getKeyCode()==KeyEvent.VK_RIGHT)
-        {
-            minR+=del;
-            maxR+=del;
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            minR += del;
+            maxR += del;
         }
-        if(e.getKeyCode()==KeyEvent.VK_LEFT)
-        {
-            minR-=del;
-            maxR-=del;
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            minR -= del;
+            maxR -= del;
         }
-        if(e.getKeyCode()==KeyEvent.VK_UP)
-        {
-            minI-=del;
-            maxI-=del;
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            minI -= del;
+            maxI -= del;
         }
-        if(e.getKeyCode()==KeyEvent.VK_DOWN)
-        {
-            minI+=del;
-            maxI+=del;
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            minI += del;
+            maxI += del;
         }
         repaint();
-        
+
     }
-    public void keyReleased(KeyEvent e)
-    {
+
+    public void keyReleased(KeyEvent e) {
         //repaint();
     }
-    public void keyTyped(KeyEvent e)
-    {
+
+    public void keyTyped(KeyEvent e) {
         //repaint();
     }
 
@@ -200,12 +191,9 @@ public class Mandelbrot {
             final DrawPane mand = new DrawPane();
             final Myframe f = new Myframe(800, 800);
             f.getContentPane().add(mand);
-        } catch (final Exception e)
-        {
+        } catch (final Exception e) {
             e.printStackTrace();
-        }
-        finally
-        {
+        } finally {
             System.out.println("Finished Successfully");
         }
     }
