@@ -77,7 +77,7 @@ class Myframe extends JFrame {
 }
 
 class DrawPane extends JPanel implements KeyListener {
-    double minR, maxR, minI, maxI, del;
+    Double minR = (double) 0, maxR= (double) 0, minI= (double) 0, maxI= (double) 0, del= (double) 0;
     boolean setzoom;
 
     DrawPane() {
@@ -111,10 +111,10 @@ class DrawPane extends JPanel implements KeyListener {
         del = (double) (maxR - minR) / (double) 100;
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            minR = -2;
-            minI = -2;
-            maxR = 2;
-            maxI = 2;
+            minR = -2.0;
+            minI = -2.0;
+            maxR = 2.0;
+            maxI = 2.0;
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             minR += del;
