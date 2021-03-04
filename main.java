@@ -184,7 +184,7 @@ class DrawPane extends JPanel implements KeyListener {
     }
 }
 
-public class Mandelbrot {
+public class main {
 
     public static void main(final String[] args) {
         try {
