@@ -1,7 +1,7 @@
-import java.awt.*;
 import javax.swing.*;
-//import java.util.*;
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 class triplet<A> {
     private final A a;
@@ -41,42 +41,26 @@ class MandelbrotCalc {
         if (deviation > 254)
             return new triplet<Integer>(Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(0));
 
-        switch (deviation % 16) {
-            case 0:
-                return new triplet<Integer>(Integer.valueOf(66), Integer.valueOf(30), Integer.valueOf(15));
-            case 1:
-                return new triplet<Integer>(Integer.valueOf(25), Integer.valueOf(7), Integer.valueOf(26));
-            case 2:
-                return new triplet<Integer>(Integer.valueOf(9), Integer.valueOf(1), Integer.valueOf(47));
-            case 3:
-                return new triplet<Integer>(Integer.valueOf(4), Integer.valueOf(4), Integer.valueOf(73)); // done
-            case 4:
-                return new triplet<Integer>(Integer.valueOf(0), Integer.valueOf(7), Integer.valueOf(100));
-            case 5:
-                return new triplet<Integer>(Integer.valueOf(12), Integer.valueOf(44), Integer.valueOf(138));
-            case 6:
-                return new triplet<Integer>(Integer.valueOf(24), Integer.valueOf(82), Integer.valueOf(117));
-            case 7:
-                return new triplet<Integer>(Integer.valueOf(57), Integer.valueOf(125), Integer.valueOf(209));
-            case 8:
-                return new triplet<Integer>(Integer.valueOf(134), Integer.valueOf(181), Integer.valueOf(229));
-            case 9:
-                return new triplet<Integer>(Integer.valueOf(211), Integer.valueOf(236), Integer.valueOf(248));
-            case 10:
-                return new triplet<Integer>(Integer.valueOf(241), Integer.valueOf(233), Integer.valueOf(191));
-            case 11:
-                return new triplet<Integer>(Integer.valueOf(248), Integer.valueOf(201), Integer.valueOf(95));
-            case 12:
-                return new triplet<Integer>(Integer.valueOf(255), Integer.valueOf(170), Integer.valueOf(0));
-            case 13:
-                return new triplet<Integer>(Integer.valueOf(204), Integer.valueOf(128), Integer.valueOf(0));
-            case 14:
-                return new triplet<Integer>(Integer.valueOf(153), Integer.valueOf(87), Integer.valueOf(0));
-            case 15:
-                return new triplet<Integer>(Integer.valueOf(106), Integer.valueOf(52), Integer.valueOf(3));
-            default:
-                return new triplet<Integer>(Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(0));
-        }
+        return switch (deviation % 16) {
+            case 0 -> new triplet<Integer>(Integer.valueOf(66), Integer.valueOf(30), Integer.valueOf(15));
+            case 1 -> new triplet<Integer>(Integer.valueOf(25), Integer.valueOf(7), Integer.valueOf(26));
+            case 2 -> new triplet<Integer>(Integer.valueOf(9), Integer.valueOf(1), Integer.valueOf(47));
+// done
+            case 3 -> new triplet<Integer>(Integer.valueOf(4), Integer.valueOf(4), Integer.valueOf(73));
+            case 4 -> new triplet<Integer>(Integer.valueOf(0), Integer.valueOf(7), Integer.valueOf(100));
+            case 5 -> new triplet<Integer>(Integer.valueOf(12), Integer.valueOf(44), Integer.valueOf(138));
+            case 6 -> new triplet<Integer>(Integer.valueOf(24), Integer.valueOf(82), Integer.valueOf(117));
+            case 7 -> new triplet<Integer>(Integer.valueOf(57), Integer.valueOf(125), Integer.valueOf(209));
+            case 8 -> new triplet<Integer>(Integer.valueOf(134), Integer.valueOf(181), Integer.valueOf(229));
+            case 9 -> new triplet<Integer>(Integer.valueOf(211), Integer.valueOf(236), Integer.valueOf(248));
+            case 10 -> new triplet<Integer>(Integer.valueOf(241), Integer.valueOf(233), Integer.valueOf(191));
+            case 11 -> new triplet<Integer>(Integer.valueOf(248), Integer.valueOf(201), Integer.valueOf(95));
+            case 12 -> new triplet<Integer>(Integer.valueOf(255), Integer.valueOf(170), Integer.valueOf(0));
+            case 13 -> new triplet<Integer>(Integer.valueOf(204), Integer.valueOf(128), Integer.valueOf(0));
+            case 14 -> new triplet<Integer>(Integer.valueOf(153), Integer.valueOf(87), Integer.valueOf(0));
+            case 15 -> new triplet<Integer>(Integer.valueOf(106), Integer.valueOf(52), Integer.valueOf(3));
+            default -> new triplet<Integer>(Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(0));
+        };
     }
 
 }
@@ -93,8 +77,6 @@ class Myframe extends JFrame {
 }
 
 class DrawPane extends JPanel implements KeyListener {
-    public int imght, imgwid;
-    int xprev = 0, yprev = 0;
     double minR, maxR, minI, maxI, del;
     boolean setzoom;
 
@@ -110,10 +92,6 @@ class DrawPane extends JPanel implements KeyListener {
         maxI = 2.0;
         del = ((double) minR - (double) maxR) / (double) 5;
         setzoom = true;
-    }
-
-    public boolean isFocusTraversable() {
-        return true;
     }
 
     //KeyListeners [start]
@@ -159,11 +137,11 @@ class DrawPane extends JPanel implements KeyListener {
     }
 
     public void keyReleased(KeyEvent e) {
-        //repaint();
+        repaint();
     }
 
     public void keyTyped(KeyEvent e) {
-        //repaint();
+        repaint();
     }
 
     //KeyListeners [End]
@@ -184,7 +162,7 @@ class DrawPane extends JPanel implements KeyListener {
     }
 }
 
-public class main {
+public class Mandelbrot {
 
     public static void main(final String[] args) {
         try {
