@@ -124,14 +124,17 @@ class myPanel extends JPanel {
     }
 
     public void repaint(boolean x) {
-        if (x)
+        if (x) {
             super.repaint();
-        else {
-            if (this.counter == 10)
+            this.counter = 0;
+        } else {
+            if (this.counter == 10) {
                 super.repaint();
-            else
+                this.counter = 0;
+            } else
                 this.counter += 1;
         }
+        System.out.println(this.counter);
     }
 
     public myPanel() {
