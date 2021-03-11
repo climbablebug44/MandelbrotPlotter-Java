@@ -1,6 +1,29 @@
 import java.awt.*;
 import java.util.ArrayList;
 
+class triplet<A> {
+    private final A a;
+    private final A b;
+    private final A c;
+
+    triplet(final A a, final A b, final A c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    A getx() {
+        return a;
+    }
+
+    A gety() {
+        return b;
+    }
+
+    A getz() {
+        return c;
+    }
+}
 
 
 
