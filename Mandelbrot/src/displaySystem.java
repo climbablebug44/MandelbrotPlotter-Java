@@ -28,18 +28,20 @@ class painterThread implements Runnable {
 class myPanel extends JPanel implements KeyListener {
     Double minR, maxR, minI, maxI, del;
     boolean setZoom;
+    private final mandelbrotDeviationCalculator calculator;
 
     public myPanel() {
-        minR = 0.0;
-        maxR = 0.0;
-        minI = 0.0;
-        maxI = 0.0;
+        minR = -2.0;
+        maxR = 2.0;
+        minI = -2.0;
+        maxI = 2.0;
         del = (minR - maxR) / 5.0;
         setZoom = true;
         addKeyListener(this);
         setSize(800, 800);
         setVisible(true);
         setFocusable(true);
+        calculator = new mandelbrotDeviationCalculator();
     }
 
     @Override
@@ -98,13 +100,12 @@ class myPanel extends JPanel implements KeyListener {
     {
         final double imgHt = 800, imgWid = 800;
         final int maxIntensity = 255;
-        mandelbrotDeviationCalculator calculator = new mandelbrotDeviationCalculator();
+
         for (double y = 0; y <= imgHt; y+=1.0) {
             for (double x = 0; x <= imgWid; x+=1.0) {
                 double cr = ((x * (maxR - minR)) / imgWid) + minR;
                 double ci = ((y * (maxI - minI) / imgHt)) + minI;
-                Color temp = calculator.mandPlot(cr, ci, maxIntensity);
-                g.setColor(temp);
+                g.setColor(calculator.mandPlot(cr, ci, maxIntensity));
                 g.drawLine((int)x , (int)y, (int)x, (int)y);
             }
         }

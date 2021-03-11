@@ -13,9 +13,7 @@ public class mandelbrotDeviationCalculator {
     }
 
     private triplet<Integer> generate(int deviation) {
-        if(deviation==255)
-            return new triplet<>(0, 0, 0);
-        return switch (deviation % 16) {
+        return switch (deviation) {
             case 0 -> new triplet<>(66, 30, 15);
             case 1 -> new triplet<>(25, 7, 26);
             case 2 -> new triplet<>(9, 1, 47);
@@ -37,12 +35,10 @@ public class mandelbrotDeviationCalculator {
     }
 
     private void generateTriplets() {
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 17; i++) {
             triplet<Integer> temp = generate(i);
             colors.add(new Color(temp.getx(),temp.gety(),temp.getz()));
         }
-        triplet<Integer> temp = generate(255);
-        colors.add(new Color(temp.getx(),temp.gety(),temp.getz()));
     }
 
     public Color mandPlot(final double compX, final double compY, final int maxIter) {
@@ -56,6 +52,6 @@ public class mandelbrotDeviationCalculator {
         }
         if(deviation==256)
             return colors.get(16);
-        return colors.get(deviation);
+        return colors.get(deviation%16);
     }
 }
